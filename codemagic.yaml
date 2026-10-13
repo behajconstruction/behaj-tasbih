@@ -8,7 +8,7 @@ workflows:
     scripts:
       - name: Fix Android folder
         script: |
-          flutter create . --platforms=android
+          flutter create . --platforms=android --overwrite
       - name: Get packages
         script: |
           flutter pub get
