@@ -1,4 +1,4 @@
-```yaml
+
 workflows:
   default-workflow:
     name: Behaj Tasbih Android Build
@@ -32,4 +32,3 @@ workflows:
 
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
-```
