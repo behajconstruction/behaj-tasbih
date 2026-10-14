@@ -1,20 +1,22 @@
+
 workflows:
   default-workflow:
-    name: Default Workflow
-    instance_type: linux_x2
+    name: Behaj Tasbih Android Build
+    instance_type: linux
     max_build_duration: 60
+
     environment:
       flutter: stable
+
     scripts:
-      - name: Fix Android folder
-        script: |
-          rm -rf android
-          flutter create . --platforms=android --org com.example
-      - name: Get packages
-        script: |
-          flutter pub get
-      - name: Build APK
-        script: |
-          flutter build apk --release
+      - name: Check Flutter version
+        script: flutter --version
+
+      - name: Get Flutter packages
+        script: flutter pub get
+
+      - name: Build Android APK
+        script: flutter build apk --release
+
     artifacts:
-      - build/**/outputs/**/*.apk
+      - build/app/outputs/flutter-apk/*.apk
