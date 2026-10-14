@@ -1,4 +1,3 @@
-
 workflows:
   default-workflow:
     name: Behaj Tasbih Android Build
@@ -9,11 +8,23 @@ workflows:
       flutter: stable
 
     scripts:
-      - name: Check project files
+      - name: Inspect GitHub project structure
         script: |
+          echo "Current directory:"
           pwd
+
+          echo "Files in repository:"
           ls -la
-          ls -la android
+
+          echo "Searching for main.dart:"
+          find . -name main.dart -type f
+
+          echo "Checking Android folder:"
+          if [ -d android ]; then
+            ls -la android
+          else
+            echo "ERROR: android is missing or is not a directory"
+          fi
 
       - name: Get packages
         script: |
