@@ -8,23 +8,22 @@ workflows:
       flutter: stable
 
     scripts:
-      - name: Inspect GitHub project structure
+      - name: Locate Flutter project
         script: |
-          echo "Current directory:"
+          echo "CURRENT DIRECTORY"
           pwd
 
-          echo "Files in repository:"
+          echo "ROOT FILES"
           ls -la
 
-          echo "Searching for main.dart:"
-          find . -name main.dart -type f
+          echo "FILES INSIDE LIB"
+          ls -la lib || true
 
-          echo "Checking Android folder:"
-          if [ -d android ]; then
-            ls -la android
-          else
-            echo "ERROR: android is missing or is not a directory"
-          fi
+          echo "FIND MAIN DART"
+          find . -type f -name main.dart -print
+
+          echo "FIND PUBSPEC"
+          find . -type f -name pubspec.yaml -print
 
       - name: Get packages
         script: |
