@@ -1,3 +1,4 @@
+```yaml
 workflows:
   default-workflow:
     name: Behaj Tasbih Android Build
@@ -8,22 +9,18 @@ workflows:
       flutter: stable
 
     scripts:
-      - name: Locate Flutter project
+      - name: Check project files
         script: |
-          echo "CURRENT DIRECTORY"
+          echo "Checking Behaj Tasbih project..."
           pwd
-
-          echo "ROOT FILES"
           ls -la
+          ls -la lib
+          test -f lib/main.dart
+          test -f pubspec.yaml
 
-          echo "FILES INSIDE LIB"
-          ls -la lib || true
-
-          echo "FIND MAIN DART"
-          find . -type f -name main.dart -print
-
-          echo "FIND PUBSPEC"
-          find . -type f -name pubspec.yaml -print
+      - name: Restore Android project setup
+        script: |
+          flutter create --platforms=android .
 
       - name: Get packages
         script: |
@@ -35,3 +32,4 @@ workflows:
 
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
+```
